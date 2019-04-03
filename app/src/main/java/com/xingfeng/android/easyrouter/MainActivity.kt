@@ -2,7 +2,6 @@ package com.xingfeng.android.easyrouter
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.xingfeng.android.api.EasyRouter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +10,6 @@ class MainActivity : AppCompatActivity() {
     val paramsActivityUrl = "easyrouter://demo/paramsActivity"
     val noPageUrl = "easyrouter://demo/noPages"
     val externalUrl = "http://www.baidu.com"
-    val dynamicUrl = "/dynamicActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +38,5 @@ class MainActivity : AppCompatActivity() {
         btnDegradeException.setOnClickListener {
             goToPages(this, "$paramsActivityUrl?firstname=wangli")
         }
-
-        btnDynamicActivity.setOnClickListener {
-            EasyRouter.getInstance().goToPages(this, dynamicUrl)
-        }
-
-
     }
 }

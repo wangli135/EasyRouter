@@ -44,11 +44,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    <Button
-            android:id="@+id/btnDynamicActivity"
-            android:text="路由收集url的跳转"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
 </LinearLayout>
