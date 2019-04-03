@@ -7,8 +7,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     val secondActivityUrl = "easyrouter://demo/secondActivity"
-    val paramsActivityUrl = "easyrouter://demo/paramsActivity"
-    val noPageUrl = "easyrouter://demo/noPages"
     val externalUrl = "http://www.baidu.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,20 +21,5 @@ class MainActivity : AppCompatActivity() {
             goToPages(this, externalUrl)
         }
 
-        btnWithParams.setOnClickListener {
-            goToPages(this, "$paramsActivityUrl?firstname=wangli&secondname=li")
-        }
-
-        btnWithoutParams.setOnClickListener {
-            goToPages(this, paramsActivityUrl)
-        }
-
-        btnDegradeNoPages.setOnClickListener {
-            goToPages(this, noPageUrl)
-        }
-
-        btnDegradeException.setOnClickListener {
-            goToPages(this, "$paramsActivityUrl?firstname=wangli")
-        }
     }
 }
