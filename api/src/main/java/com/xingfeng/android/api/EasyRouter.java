@@ -95,28 +95,33 @@ public class EasyRouter {
         //scheme和host要么都不为null，要么都为null
         boolean rightUrl = checkRightUrl(urlScheme, urlHost);
         if (!rightUrl) {
-            routerListener.onLost(url);
+            if (routerListener != null) {
+                routerListener.onLost(url);
+            }
             return find;
         }
 
+        //判断是否是内部识别的url，绝对url的话，scheme和host匹配；或者是相对url
         boolean isInnerUrl = checkInnerUrl(urlScheme, urlHost);
-        if(!isInnerUrl&&routerListener!=null){
-//            routerListener.onL
+        if (!isInnerUrl) {
+            if (routerListener != null) {
+                routerListener.onLost(url);
+            }
+            return find;
         }
 
         for (String key : urlRouterMap.keySet()) {
-            if (url.startsWith(key)) {
+            //key肯定是大于等于urlPath的，包含了绝对URL和相对URL
+            if (key.endsWith(urlPath)) {
                 find = true;
                 if (routerListener != null) {
                     routerListener.onFound(url);
                 }
                 //在跳转之前先由客户端进行判断
                 Intent intent = new Intent(context, urlRouterMap.get(key));
-//                URI uri = URI.create(url);
-                String query = uri.getQuery();
-                if (!TextUtils.isEmpty(query)) {
+                if (!TextUtils.isEmpty(urlQuery)) {
                     try {
-                        String[] queryParametes = query.split("&");
+                        String[] queryParametes = urlQuery.split("&");
                         for (String paramete : queryParametes) {
                             String[] extras = paramete.split("=");
                             intent.putExtra(extras[0], extras[1]);
@@ -126,6 +131,7 @@ public class EasyRouter {
                     }
                 }
                 context.startActivity(intent);
+                break;
             }
         }
         //没有找到

@@ -5,20 +5,22 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-            android:name="com.xingfeng.android.easyrouter.MyApplication"
+            android:name=".MyApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.xingfeng.android.easyrouter.DynamicActivity">
+        <activity android:name=".AbsoluteUrlActivity">
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.DegradeActivity">
+        <activity android:name=".DynamicActivity">
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.WithParamsActivity">
+        <activity android:name=".DegradeActivity">
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.ProxyActivity">
+        <activity android:name=".WithParamsActivity">
+        </activity>
+        <activity android:name=".ProxyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -30,16 +32,16 @@
                         android:scheme="easyrouter"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.SecondActivity">
+        <activity android:name=".SecondActivity">
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.xingfeng.android.easyrouter.WebViewActivity"/>
+        <activity android:name=".WebViewActivity"/>
     </application>
 
 </manifest>

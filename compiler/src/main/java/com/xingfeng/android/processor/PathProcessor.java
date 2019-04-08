@@ -27,17 +27,12 @@ import java.util.Set;
  */
 public class PathProcessor extends AbstractProcessor {
 
-    private Elements elementUtil;
-    private Types typeUtils;
     private Filer filer;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
-        elementUtil = processingEnv.getElementUtils();
-        typeUtils = processingEnv.getTypeUtils();
         filer = processingEnv.getFiler();
-        System.out.println("init...");
     }
 
     @Override
@@ -46,7 +41,6 @@ public class PathProcessor extends AbstractProcessor {
             return false;
         }
 
-        System.out.println("processing... " + roundEnvironment.getElementsAnnotatedWith(Path.class).size());
         MethodSpec.Builder builder = MethodSpec.methodBuilder("getUrlRouterMap")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override.class)
@@ -54,6 +48,7 @@ public class PathProcessor extends AbstractProcessor {
                         ParameterizedTypeName.get(ClassName.get(Class.class),
                                 WildcardTypeName.subtypeOf(ClassName.get("android.app", "Activity")))))
                 .addStatement("Map<String,Class<? extends Activity>> urlMaps=new $T<>()", HashMap.class);
+        //遍历每个@Path注解，将内容添加到Map中
         for (Element element : roundEnvironment.getElementsAnnotatedWith(Path.class)) {
             //收集信息
             if (element.getKind() != ElementKind.CLASS) {
@@ -80,8 +75,6 @@ public class PathProcessor extends AbstractProcessor {
             e.printStackTrace();
         }
 
-        System.out.println(javaFile);
-        //生成源代码
         return false;
     }
 

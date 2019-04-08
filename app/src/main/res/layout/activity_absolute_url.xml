@@ -5,13 +5,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DynamicActivity">
+        tools:context="com.xingfeng.android.easyrouter.AbsoluteUrlActivity">
 
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-              android:text="动态收集路由的跳转结果页"
-              android:textColor="#FF00FF"
-              android:gravity="center"
+              android:text="Path注解是绝对URL\n但是跳转是相对URL"
               android:textSize="30sp"
+              android:gravity="center"
+              android:textColor="#FF00FF"
     />
 
 </android.support.constraint.ConstraintLayout>

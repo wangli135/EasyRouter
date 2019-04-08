@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"/>
 
     <Button
-            android:id="@+id/btnDegradeException"
-            android:text="出现异常的降级"
+            android:id="@+id/btnErrorSchemeException"
+            android:text="不正确的scheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -50,5 +50,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    <Button
+            android:id="@+id/btnAbsoluteActivity"
+            android:text="相对URL跳绝对URL注解"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

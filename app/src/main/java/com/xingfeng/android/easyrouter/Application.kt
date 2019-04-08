@@ -12,6 +12,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        EasyRouter.getInstance().init("easyrouter", "demo")
+        EasyRouter.getInstance().init("easyrouter","demo")
     }
 }
