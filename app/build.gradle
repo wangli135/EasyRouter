@@ -1,8 +1,13 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    arguments {
+        arg("module_name", "App")
+    }
+}
 
 android {
     compileSdkVersion 28
@@ -35,5 +40,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':api')
     implementation project(":other_module")
-    annotationProcessor project(":compiler")
+    kapt project(":compiler")
 }

@@ -2,8 +2,10 @@ package com.xingfeng.android.easyrouter
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.xingfeng.android.annotation.Path
 import kotlinx.android.synthetic.main.activity_with_params.*
 
+@Path("/paramsActivity")
 class WithParamsActivity : AppCompatActivity() {
 
     val FIRST_NAME_KEY = "firstname"

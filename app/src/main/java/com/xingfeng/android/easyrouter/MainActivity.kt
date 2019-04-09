@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "找到了", Toast.LENGTH_SHORT).show()
                 }
             })
-            addUrl(secondActivityUrl, SecondActivity::class.java)
-            addUrl(paramsActivityUrl, WithParamsActivity::class.java)
         }
 
         btnGo2SecondActivity.setOnClickListener {
