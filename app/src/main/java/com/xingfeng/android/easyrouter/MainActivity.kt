@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     val externalUrl = "http://www.baidu.com"
     val dynamicUrl = "/dynamicActivity"
     val absoluteUrl = "/absoluteUrlActivity"
+    val otherModuleUrl = "/otherMoudleActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onIntercept(url: String?): Boolean {
                     if (url != null && url.startsWith("http")) {
                         startActivity(Intent(this@MainActivity, WebViewActivity::class.java).apply {
-                            putExtra("external_url", url!!)
+                            putExtra("external_url", url)
                         })
                         return true
                     }
@@ -76,8 +77,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnAbsoluteActivity.setOnClickListener {
-            EasyRouter.getInstance().goToPages(this, absoluteUrl);
+            EasyRouter.getInstance().goToPages(this, absoluteUrl)
         }
+
+        btnOtherModule.setOnClickListener {
+            EasyRouter.getInstance().goToPages(this, otherModuleUrl)
+        }
+
 
     }
 }

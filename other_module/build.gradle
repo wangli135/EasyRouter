@@ -13,6 +13,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["module_name": "OtherModule"]
+            }
+        }
+
     }
 
     buildTypes {
@@ -33,7 +39,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation project(":api")
     implementation project(":annotation")
-//    annotationProcessor project(":compiler")
-//    implementation project(":api")
+    annotationProcessor project(":compiler")
 }

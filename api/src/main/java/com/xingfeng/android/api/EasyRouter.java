@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class EasyRouter {
 
-    private static final String URL_COLLECTOR_IMPL_CLASS_NAME = "com.xingfeng.android.api.UrlCollectorImpl";
+    private static final String URL_COLLECTOR_IMPL_CLASS_NAME = "com.xingfeng.android.api.AppUrlCollectorImpl";
 
     private static volatile EasyRouter instance = null;
 
@@ -66,6 +66,18 @@ public class EasyRouter {
         }
 
         return false;
+    }
+
+    /**
+     * 添加一个module
+     *
+     * @param urlCollector
+     * @return
+     */
+    public void addModule(UrlCollector urlCollector) {
+        if (urlCollector != null) {
+            urlRouterMap.putAll(urlCollector.getUrlRouterMap());
+        }
     }
 
     public void addUrl(String url, Class<? extends Activity> clazz) {

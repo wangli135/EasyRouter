@@ -14,6 +14,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
+import javax.swing.plaf.TextUI;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,12 +28,26 @@ import java.util.Set;
  */
 public class PathProcessor extends AbstractProcessor {
 
+    private static final String MODULE_NAME_KEY = "module_name";
+
     private Filer filer;
+    private String classNameSuffix;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
         filer = processingEnv.getFiler();
+        Map<String, String> options = processingEnvironment.getOptions();
+        for (String key : options.keySet()) {
+            if (key.equals(MODULE_NAME_KEY)) {
+                classNameSuffix = options.get(key);
+                break;
+            }
+        }
+        if (classNameSuffix == null) {
+            classNameSuffix = "App";
+        }
+        System.out.println(classNameSuffix);
     }
 
     @Override
@@ -62,7 +77,7 @@ public class PathProcessor extends AbstractProcessor {
         }
 
         builder.addStatement("return urlMaps");
-        TypeSpec typeSpec = TypeSpec.classBuilder("UrlCollectorImpl")
+        TypeSpec typeSpec = TypeSpec.classBuilder(classNameSuffix + "UrlCollectorImpl")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addSuperinterface(ClassName.get("com.xingfeng.android.api", "UrlCollector"))
                 .addMethod(builder.build())
@@ -87,4 +102,5 @@ public class PathProcessor extends AbstractProcessor {
     public Set<String> getSupportedAnnotationTypes() {
         return Collections.singleton(Path.class.getCanonicalName());
     }
+
 }
