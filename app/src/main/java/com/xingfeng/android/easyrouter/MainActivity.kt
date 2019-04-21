@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                         })
                         return true
                     }
+                    if ((url == secondActivityUrl || url == dynamicUrl) && !LoginActivity.isLogin) {
+                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                        return true
+                    }
                     return false
                 }
 
@@ -82,6 +86,9 @@ class MainActivity : AppCompatActivity() {
             EasyRouter.getInstance().goToPages(this, otherModuleUrl)
         }
 
+        btnLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
 
     }
 }

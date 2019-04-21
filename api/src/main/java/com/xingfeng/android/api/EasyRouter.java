@@ -56,12 +56,16 @@ public class EasyRouter {
             urlRouterMap = urlCollector.getUrlRouterMap();
             this.scheme = scheme;
             this.host = host;
+            //Hook
+            InstrumentationHook.attachContext();
             return true;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -87,6 +91,12 @@ public class EasyRouter {
         urlRouterMap.put(url, clazz);
     }
 
+    private String currentUrl;//当前处理的URL
+
+    public String getCurrentUrl() {
+        return currentUrl;
+    }
+
     public boolean goToPages(Context context, String url) {
         boolean find = false;
         if (TextUtils.isEmpty(url)) {
@@ -95,6 +105,8 @@ public class EasyRouter {
         //判断是否拦截
         if (routerListener != null && routerListener.onIntercept(url)) {
             find = true;
+            //保存URL
+            currentUrl = url;
             return find;
         }
 
@@ -142,6 +154,8 @@ public class EasyRouter {
                         e.printStackTrace();
                     }
                 }
+                //清除URL
+                currentUrl = null;
                 context.startActivity(intent);
                 break;
             }
